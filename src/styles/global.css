@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 16px;
+}
+
+html, body, #root, .App {
+    height: 100%;
+}
+
+.App {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-content {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+}
