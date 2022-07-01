@@ -1,0 +1,87 @@
+@value btn-blue from './colors.css';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.quickStart {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.startBtn {
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: bold;
+    background-color: btn-blue;
+    cursor: pointer;
+}
+
+.templatesSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.templatesHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.templateGrid {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+
+.template {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.template.emptyTemplate {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    color: btn-blue;
+}
+
+.templateHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.exercises {
+    list-style: none;
+}
+
+@media (min-width: 400px) {
+    .template {
+        width: 140px;
+        height: 130px;
+    }
+}
+
+@media (min-width: 500px) {
+    .template {
+        width: 180px;
+        height: 140px;
+    }
+}
