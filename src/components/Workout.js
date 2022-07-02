@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/workout.module.css';
 import MoreButton from './MoreButton.js';
 import WorkoutTemplate from './WorkoutTemplate.js';
+import { db } from '../firebase-config.js';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 function Workout() {
     const [userTemplates, setUserTemplates] = useState([]);
     const [exampleTemplates, setExampleTemplates] = useState([]);
+    const exampleTemplatesRef = collection(db, 'Base Exercises');
 
+    useEffect(() => {
+        const getExampleTemplates = async () => {
+            const data = await getDocs(exampleTemplatesRef);
+            setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+        };
+
+        getExampleTemplates();
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -39,6 +50,9 @@ function Workout() {
                         <div className={styles.templateGrid}>
                             <WorkoutTemplate name='Legs' exercises={['Bench', 'Squat', 'Deadlift', 'Seated Curls']}/>
                             <WorkoutTemplate name='Back and Biceps' exercises={['Pull Ups', 'Push Ups']}/>
+                            {exampleTemplates.map((template) => {
+                                return <WorkoutTemplate name={template.name} />
+                            })}
                         </div>
                     </div>
                 </div>
