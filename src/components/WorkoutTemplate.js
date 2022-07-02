@@ -13,8 +13,9 @@ function WorkoutTemplate({ name, exercises }) {
             {!exercises && <p>Add new Template</p>}
             <ul className={styles.exercises}>
                 {exercises && exercises.slice(0, 3).map((exercise) => {
-                    return <li key={exercise}>{exercise}</li>
+                    return <li key={exercise.name} className={styles.exercise}>{exercise.name}</li>
                 })}
+
                 {exercises && exercises.length > 3 && <li className='bold'>...</li>}
             </ul>
         </figure>

@@ -9,12 +9,13 @@ import { collection, getDocs } from 'firebase/firestore';
 function Workout() {
     const [userTemplates, setUserTemplates] = useState([]);
     const [exampleTemplates, setExampleTemplates] = useState([]);
-    const exampleTemplatesRef = collection(db, 'Base Exercises');
+    const exampleTemplatesRef = collection(db, 'Base Templates');
 
     useEffect(() => {
         const getExampleTemplates = async () => {
             const data = await getDocs(exampleTemplatesRef);
             setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+            console.log(data);
         };
 
         getExampleTemplates();
@@ -48,10 +49,8 @@ function Workout() {
                             <MoreButton />
                         </header>
                         <div className={styles.templateGrid}>
-                            <WorkoutTemplate name='Legs' exercises={['Bench', 'Squat', 'Deadlift', 'Seated Curls']}/>
-                            <WorkoutTemplate name='Back and Biceps' exercises={['Pull Ups', 'Push Ups']}/>
                             {exampleTemplates.map((template) => {
-                                return <WorkoutTemplate name={template.name} />
+                                return <WorkoutTemplate key={template.id} name={template.name} exercises={template.exercises}/>
                             })}
                         </div>
                     </div>
