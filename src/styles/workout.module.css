@@ -6,6 +6,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    margin-left: 90px;
 }
 
 .quickStart {
@@ -92,6 +93,10 @@
 }
 
 @media (min-width: 768px) {
+    .container {
+        margin-left: 200px;
+    }
+
     .template {
         justify-content: center;
         width: 180px;

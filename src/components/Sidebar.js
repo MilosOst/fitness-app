@@ -10,13 +10,24 @@ import logOutIcon from '../images/svgs/logout.svg';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
 import SidebarLink from './SidebarLink.js';
-
+import { UserAuth } from '../context/AuthContext.js';
+ 
 function Sidebar() {
+    const { logOut } = UserAuth();
+
+    const handleSignOut = async () => {
+        try {
+            await logOut();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <aside className={styles.sidebar}>
             <div className={styles.avatarBox}>
                 <Link to='profile'>
-                    <Avatar name='John Doe' round={true} size='75' alt='Error'/>
+                    <Avatar round={true} size='75' alt='Error' src={localStorage.getItem('profilePic')} />
                 </Link>
             </div>
             <ul className={styles.links}>
@@ -28,7 +39,14 @@ function Sidebar() {
             </ul>
             <ul className={styles.links}>
                 <SidebarLink name='Settings' icon={settingsIcon} path='settings' />
-                <SidebarLink name='Logout' icon={logOutIcon} path='logout' />
+                <Link
+                    to={'/signin'}
+                    className={styles.link}
+                    onClick={handleSignOut}
+                    >
+                    <img src={logOutIcon} alt={'Logout'} className={styles.linkImg}/>
+                    <h3 className={styles.linkName}>Logout</h3>
+            </Link>
             </ul>
         </aside>
     );

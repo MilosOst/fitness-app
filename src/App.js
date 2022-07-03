@@ -1,18 +1,27 @@
 import './styles/global.css';
-import Sidebar from './components/Sidebar.js';
 import { Routes, Route } from 'react-router-dom';
 import Workout from './components/Workout.js';
+import SignIn from './components/Signin.js';
+import { AuthContextProvider } from './context/AuthContext.js';
+import Protected from './components/Protected.js';
+import MainLayout from './components/MainLayout.js';
+
 
 function App() {
 	return (
 		<div className="App">
-			<Sidebar />
-			<div className="main-content">
-				<Routes>
-					<Route path='/home' element={<h1>Hello</h1>}/>
-					<Route path='/workout' element={<Workout />} />
-				</Routes>
-			</div>
+			<AuthContextProvider>
+				<div className="main-content">
+					<Routes>
+						<Route element={<Protected><MainLayout /></Protected>}>
+							<Route index element={<div>HomePage</div>}/>
+							<Route path='/workout' element={<Protected><Workout /></Protected>}/>
+							<Route path='*' element={<div>HomePage</div>} />
+						</Route>
+						<Route path='/signin' element={<SignIn />} />
+					</Routes>
+				</div>
+			</AuthContextProvider>
 		</div>
 	);
 }
