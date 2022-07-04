@@ -78,6 +78,60 @@
     font-size: 0.9rem;
 }
 
+.detailModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 60%);
+}
+
+.detailedTemplate {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.detailedTemplate > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transform: rotate(45deg);
+}
+
+.workoutBtn {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: btn-blue;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+}
+
 @media (min-width: 400px) {
     .template {
         width: 140px;

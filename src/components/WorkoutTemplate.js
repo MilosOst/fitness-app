@@ -1,24 +1,47 @@
+import { useState } from 'react';
 import styles from '../styles/workout.module.css';
 import MoreButton from './MoreButton.js';
 
 function WorkoutTemplate({ name, exercises }) {
+    const [open, setOpen] = useState(false);
 
 
     return (
-        <figure className={styles.template}>
-            <header className={styles.templateHeader}>
-                <h4 className='bold'>{name}</h4>
-                <MoreButton />
-            </header>
-            {!exercises && <p>Add new Template</p>}
-            <ul className={styles.exercises}>
-                {exercises && exercises.slice(0, 3).map((exercise) => {
-                    return <li key={exercise.name} className={styles.exercise}>{exercise.name}</li>
-                })}
-
-                {exercises && exercises.length > 3 && <li className='bold'>...</li>}
-            </ul>
-        </figure>
+        <div>
+            <figure className={styles.template} onClick={() => setOpen(true)}>
+                <header className={styles.templateHeader}>
+                    <h4 className='bold'>{name}</h4>
+                    <MoreButton />
+                </header>
+                {!exercises && <p>Add new Template</p>}
+                <ul className={styles.exercises}>
+                    {exercises && exercises.slice(0, 3).map((exercise) => {
+                        return <li key={exercise.name} className={styles.exercise}>{exercise.sets} x {exercise.name}</li>
+                    })}
+                    {exercises && exercises.length > 3 && <li className='bold'>...</li>}
+                </ul>
+            </figure>
+            {open && 
+            <div className={styles.detailModal}>
+                    <figure className={styles.detailedTemplate}>
+                        <header className={styles.templateHeader}>
+                        <h4 className='bold'>{name}</h4>
+                        </header>
+                        {!exercises && <p>Add new Template</p>}
+                        <ul className={styles.exercises}>
+                            {exercises && exercises.map((exercise) => {
+                                return <li key={exercise.name} className={styles.exercise}>{exercise.sets} x {exercise.name}</li>
+                            })}
+                        </ul>
+                        <button className={styles.closeBtn} onClick={() => setOpen(false)}>
+                            +
+                        </button>
+                        <button className={styles.workoutBtn}>
+                            Start Workout
+                        </button>
+                    </figure>
+            </div>}
+        </div>
     );
 }
 
