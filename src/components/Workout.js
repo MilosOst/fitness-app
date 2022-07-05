@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from '../styles/workout.module.css';
 import MoreButton from './MoreButton.js';
 import WorkoutTemplate from './WorkoutTemplate.js';
 import { db } from '../firebase-config.js';
 import { collection, getDocs } from 'firebase/firestore';
+import ActiveWorkout from './ActiveWorkout.js';
+import { WorkoutContext } from '../context/WorkoutContext.js';
 
 
 function Workout() {
     const [userTemplates, setUserTemplates] = useState([]);
     const [exampleTemplates, setExampleTemplates] = useState([]);
     const exampleTemplatesRef = collection(db, 'Base Templates');
+
+    const { activeWorkout } = useContext(WorkoutContext);
 
     useEffect(() => {
         const getExampleTemplates = async () => {
@@ -20,6 +24,7 @@ function Workout() {
 
         getExampleTemplates();
     }, []);
+
 
     return (
         <div className={styles.container}>
@@ -50,12 +55,20 @@ function Workout() {
                         </header>
                         <div className={styles.templateGrid}>
                             {exampleTemplates.map((template) => {
-                                return <WorkoutTemplate key={template.id} name={template.name} exercises={template.exercises}/>
+                                return (
+                                    <WorkoutTemplate
+                                        key={template.id}
+                                        name={template.name}
+                                        exercises={template.exercises}
+                                        />
+                                    )
                             })}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {Object.keys(activeWorkout).length !== 0 && <ActiveWorkout name={activeWorkout.name} />}
         </div>
     );
 }

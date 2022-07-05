@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { WorkoutContext } from '../context/WorkoutContext.js';
 import styles from '../styles/workout.module.css';
 import MoreButton from './MoreButton.js';
 
 function WorkoutTemplate({ name, exercises }) {
     const [open, setOpen] = useState(false);
+    
+    const { updateActiveWorkout } = useContext(WorkoutContext);
 
+    const handleStartWorkout = () => {
+        updateActiveWorkout(name, exercises);
+        setOpen(false);
+    };
 
     return (
         <div>
@@ -22,10 +29,10 @@ function WorkoutTemplate({ name, exercises }) {
                 </ul>
             </figure>
             {open && 
-            <div className={styles.detailModal}>
+                <div className={styles.detailModal}>
                     <figure className={styles.detailedTemplate}>
                         <header className={styles.templateHeader}>
-                        <h4 className='bold'>{name}</h4>
+                            <h4 className='bold'>{name}</h4>
                         </header>
                         {!exercises && <p>Add new Template</p>}
                         <ul className={styles.exercises}>
@@ -36,11 +43,12 @@ function WorkoutTemplate({ name, exercises }) {
                         <button className={styles.closeBtn} onClick={() => setOpen(false)}>
                             +
                         </button>
-                        <button className={styles.workoutBtn}>
+                        <button className={styles.workoutBtn} onClick={handleStartWorkout}>
                             Start Workout
                         </button>
                     </figure>
-            </div>}
+                </div>
+            }
         </div>
     );
 }

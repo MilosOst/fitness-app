@@ -15,6 +15,7 @@ html, body, #root, .App {
 .App {
     display: flex;
     font-family: 'Roboto', sans-serif;
+    line-height: 1.2;
 }
 
 .main-content {
@@ -29,6 +30,8 @@ html, body, #root, .App {
 .bold {
     font-weight: bold;
 }
+
+
 
 
 @media (max-width: 768px) {

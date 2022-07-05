@@ -1,0 +1,90 @@
+@value btn-blue from './colors.css';
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: column;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 90px);
+    background-color: whitesmoke;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.expandBtn {
+    width: 24px;
+    height: 24px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.close {
+    transform: rotate(180deg);
+}
+
+.expanded {
+    height: 90vh;
+}
+
+.exerciseList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+}
+
+.exerciseSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.exerciseName {
+    color: btn-blue;
+}
+
+.setsTable {
+    width: 100%;
+    text-align: center;
+    border-spacing: 8px;
+}
+
+.setsTable > tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.setCol {
+    width: 20%;
+}
+
+.weightCol {
+    width: 40%;
+}
+
+.repsCol {
+    width: 40%;
+}
+
+.setNum {
+    background-color: gainsboro;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.inputBox {
+    width: 75%;
+    border-radius: 8px;
+    padding: 4px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: calc(100% - 200px);
+    }
+}
