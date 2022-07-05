@@ -17,6 +17,7 @@ function ExerciseSection({ exercise, exerciseIndex }) {
                     <col className={styles.weightCol}/>
                     <col className={styles.repsCol}/>
                     <col className={styles.confirmCol}/>
+                    <col className={styles.removeCol}/>
                 </colgroup>
                 <thead>
                     <tr>

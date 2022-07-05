@@ -63,14 +63,18 @@
 }
 
 .weightCol {
-    width: 35%;
+    width: 30%;
 }
 
 .repsCol {
-    width: 35%;
+    width: 30%;
 }
 
 .confirmCol {
+    width: 10%;
+}
+
+.removeCol {
     width: 10%;
 }
 
