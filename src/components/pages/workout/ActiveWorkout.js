@@ -1,7 +1,7 @@
-import styles from '../styles/activeworkout.module.css';
-import expandIcon from '../images/svgs/expand-up.svg';
+import styles from '../../../styles/activeworkout.module.css';
+import expandIcon from '../../../images/svgs/expand-up.svg';
 import { useContext, useState } from 'react';
-import { WorkoutContext } from '../context/WorkoutContext.js';
+import { WorkoutContext } from '../../../context/WorkoutContext.js';
 import ExerciseSection from './ExerciseSection.js';
 
 function ActiveWorkout({ name, exercises }) {
@@ -21,9 +21,9 @@ function ActiveWorkout({ name, exercises }) {
 
             {expanded && 
             <ul className={styles.exerciseList}>
-                {activeWorkout.exercises.map((exercise) => {
+                {activeWorkout.exercises.map((exercise, index) => {
                     return (
-                        <ExerciseSection exercise={exercise} key={exercise.name}/>
+                        <ExerciseSection exercise={exercise} key={index} exerciseIndex={index}/>
                     );
                 })}
             </ul>

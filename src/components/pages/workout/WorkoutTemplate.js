@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { WorkoutContext } from '../context/WorkoutContext.js';
-import styles from '../styles/workout.module.css';
-import MoreButton from './MoreButton.js';
+import { WorkoutContext } from '../../../context/WorkoutContext.js';
+import styles from '../../../styles/workout.module.css';
+import MoreButton from '../../MoreButton.js';
 
 function WorkoutTemplate({ name, exercises }) {
     const [open, setOpen] = useState(false);

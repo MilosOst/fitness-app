@@ -1,11 +1,11 @@
 import './styles/global.css';
 import { Routes, Route } from 'react-router-dom';
-import Workout from './components/Workout.js';
+import Workout from './components/pages/workout/Workout.js';
 import SignIn from './components/Signin.js';
 import { AuthContextProvider } from './context/AuthContext.js';
 import Protected from './components/Protected.js';
 import MainLayout from './components/MainLayout.js';
-import ActiveWorkout from './components/ActiveWorkout.js';
+import ActiveWorkout from './components/pages/workout/ActiveWorkout.js';
 import { useState } from 'react';
 import { WorkoutContext } from './context/WorkoutContext.js';
 
@@ -19,7 +19,7 @@ function App() {
 			if (!exercise.breakdown) {
 				exercise.breakdown = [];
 				for (let i = 0; i < exercise.sets; i++) {
-					exercise.breakdown.push({});
+					exercise.breakdown.push({confirmed: false});
 				}
 			}
 		});
@@ -31,8 +31,18 @@ function App() {
             name: name,
 			exercises: populateBreakdown(exercises),
         });
-		console.log(activeWorkout);
     };
+
+	const confirmSet = (exerciseIndex, setIndex, weight, reps) => {
+		const copy = {...activeWorkout};
+		copy.exercises[exerciseIndex].breakdown[setIndex] = {
+			reps: parseInt(reps),
+			weight: parseInt(weight),
+			confirmed: true,
+		}
+
+		setActiveWorkout(copy);
+	};
 
 	return (
 		<div className="App">
@@ -44,7 +54,7 @@ function App() {
 							<Route
 								path='/workout'
 								element={
-								<WorkoutContext.Provider value={{activeWorkout, updateActiveWorkout}}>
+								<WorkoutContext.Provider value={{activeWorkout, updateActiveWorkout, confirmSet}}>
 									<Protected>
 										<Workout/>
 									</Protected>

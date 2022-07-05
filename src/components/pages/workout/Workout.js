@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import styles from '../styles/workout.module.css';
-import MoreButton from './MoreButton.js';
+import styles from '../../../styles/workout.module.css';
+import MoreButton from '../../MoreButton.js';
 import WorkoutTemplate from './WorkoutTemplate.js';
-import { db } from '../firebase-config.js';
+import { db } from '../../../firebase-config.js';
 import { collection, getDocs } from 'firebase/firestore';
 import ActiveWorkout from './ActiveWorkout.js';
-import { WorkoutContext } from '../context/WorkoutContext.js';
+import { WorkoutContext } from '../../../context/WorkoutContext.js';
 
 
 function Workout() {

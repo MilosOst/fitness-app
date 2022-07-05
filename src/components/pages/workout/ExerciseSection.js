@@ -1,10 +1,13 @@
-import styles from '../styles/activeworkout.module.css';
+import styles from '../../../styles/activeworkout.module.css';
+import ExerciseSet from './ExerciseSet.js';
+import { uuidv4 } from '@firebase/util';
 
-function ExerciseSection({ exercise }) {
+
+function ExerciseSection({ exercise, exerciseIndex }) {
 
 
     return (
-        <li className={styles.exerciseSection} onClick={() => console.log(exercise)}>
+        <li className={styles.exerciseSection}>
             <header className={styles.exerciseHeader}>
                 <h3 className={styles.exerciseName}>{exercise.name}</h3>
             </header>
@@ -13,6 +16,7 @@ function ExerciseSection({ exercise }) {
                     <col className={styles.setCol}/>
                     <col className={styles.weightCol}/>
                     <col className={styles.repsCol}/>
+                    <col className={styles.confirmCol}/>
                 </colgroup>
                 <thead>
                     <tr>
@@ -24,11 +28,7 @@ function ExerciseSection({ exercise }) {
                 <tbody>
                     {exercise.breakdown.map((entry, index) => {
                         return (
-                            <tr key={index}>
-                                <td className={styles.setNum}>{index}</td>
-                                <td><input type="number" className={styles.inputBox} value={entry.weight}/></td>
-                                <td><input type="number" className={styles.inputBox} value={entry.reps || 10}></input></td>
-                            </tr>
+                            <ExerciseSet key={index} entry={entry} setIndex={index} exerciseIndex={exerciseIndex} id={uuidv4()}/>
                         );
                     })}
                 </tbody>
