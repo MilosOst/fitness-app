@@ -78,6 +78,17 @@
     width: 10%;
 }
 
+.addBtn {
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: btn-blue;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .container {
         width: calc(100% - 200px);

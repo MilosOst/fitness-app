@@ -19,7 +19,6 @@ function Workout() {
         const getExampleTemplates = async () => {
             const data = await getDocs(exampleTemplatesRef);
             setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-            console.log(data);
         };
 
         getExampleTemplates();

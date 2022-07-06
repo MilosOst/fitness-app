@@ -1,9 +1,12 @@
 import styles from '../../../styles/activeworkout.module.css';
 import ExerciseSet from './ExerciseSet.js';
 import { uuidv4 } from '@firebase/util';
+import { useContext } from 'react';
+import { WorkoutContext } from '../../../context/WorkoutContext.js';
 
 
 function ExerciseSection({ exercise, exerciseIndex }) {
+    const { addSet } = useContext(WorkoutContext);
 
 
     return (
@@ -34,6 +37,7 @@ function ExerciseSection({ exercise, exerciseIndex }) {
                     })}
                 </tbody>
             </table>
+            <button className={styles.addBtn} onClick={() => addSet(exerciseIndex)}>Add Set</button>
         </li>
     )
 

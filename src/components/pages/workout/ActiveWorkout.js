@@ -3,6 +3,7 @@ import expandIcon from '../../../images/svgs/expand-up.svg';
 import { useContext, useState } from 'react';
 import { WorkoutContext } from '../../../context/WorkoutContext.js';
 import ExerciseSection from './ExerciseSection.js';
+import { uuidv4 } from '@firebase/util';
 
 function ActiveWorkout({ name, exercises }) {
     const [expanded, setExpanded] = useState(false);
@@ -23,7 +24,7 @@ function ActiveWorkout({ name, exercises }) {
             <ul className={styles.exerciseList}>
                 {activeWorkout.exercises.map((exercise, index) => {
                     return (
-                        <ExerciseSection exercise={exercise} key={index} exerciseIndex={index}/>
+                        <ExerciseSection exercise={exercise} key={uuidv4()} exerciseIndex={index}/>
                     );
                 })}
             </ul>

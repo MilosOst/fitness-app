@@ -13,17 +13,16 @@ function ExerciseSet({ entry, setIndex, exerciseIndex, id }) {
     const { confirmSet, removeSet } = useContext(WorkoutContext);
 
     const handleSubmit = (e) => {
-        console.log('Submitted');
         e.preventDefault();
         if (!confirmed) {
-            confirmSet(exerciseIndex, setIndex, reps, weight);
+            confirmSet(exerciseIndex, setIndex, weight, reps);
         }
         setConfirmed(!confirmed);
     };
 
     return (
-        <tr className={confirmed ? styles.confirmed : ''} onClick={() => console.log(entry)}>
-            <td className={styles.setNum}><p className={confirmed ? styles.confirmed : ''}>{setIndex}</p></td>
+        <tr className={confirmed ? styles.confirmed : ''}>
+            <td className={styles.setNum}><p className={confirmed ? styles.confirmed : ''}>{setIndex + 1}</p></td>
             <td>
                 <input
                     type='number'

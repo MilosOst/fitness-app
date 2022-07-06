@@ -44,6 +44,14 @@ function App() {
 		setActiveWorkout(copy);
 	};
 
+	const addSet = (exerciseIndex) => {
+		const copy = {...activeWorkout};
+		copy.exercises[exerciseIndex].breakdown.push({
+			confirmed: false,
+		});
+		setActiveWorkout(copy);
+	};
+
 	const removeSet = (exerciseIndex, setIndex) => {
 		const copy = {...activeWorkout};
 		copy.exercises[exerciseIndex].breakdown.splice(setIndex, 1);
@@ -60,7 +68,7 @@ function App() {
 							<Route
 								path='/workout'
 								element={
-								<WorkoutContext.Provider value={{activeWorkout, updateActiveWorkout, confirmSet, removeSet}}>
+								<WorkoutContext.Provider value={{activeWorkout, updateActiveWorkout, confirmSet, removeSet, addSet}}>
 									<Protected>
 										<Workout/>
 									</Protected>
