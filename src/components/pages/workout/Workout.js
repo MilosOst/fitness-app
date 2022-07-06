@@ -6,23 +6,24 @@ import { db } from '../../../firebase-config.js';
 import { collection, getDocs } from 'firebase/firestore';
 import ActiveWorkout from './ActiveWorkout.js';
 import { WorkoutContext } from '../../../context/WorkoutContext.js';
+import { exampleTemplates } from '../../../data/exampleTemplates.js';
 
 
 function Workout() {
     const [userTemplates, setUserTemplates] = useState([]);
-    const [exampleTemplates, setExampleTemplates] = useState([]);
     const exampleTemplatesRef = collection(db, 'Base Templates');
 
     const { activeWorkout } = useContext(WorkoutContext);
 
-    useEffect(() => {
-        const getExampleTemplates = async () => {
-            const data = await getDocs(exampleTemplatesRef);
-            setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-        };
+    // useEffect(() => {
+    //     const getExampleTemplates = async () => {
+    //         const data = await getDocs(exampleTemplatesRef);
+    //         setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    //         console.log(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    //     };
 
-        getExampleTemplates();
-    }, []);
+    //     getExampleTemplates();
+    // }, []);
 
 
     return (

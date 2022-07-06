@@ -27,8 +27,8 @@ function ActiveWorkout({ name, exercises }) {
                         <ExerciseSection exercise={exercise} key={uuidv4()} exerciseIndex={index}/>
                     );
                 })}
+                <button className={`${styles.addBtn} ${styles.addExercise}`}>Add Exercise</button>
             </ul>
-            
             }
         </div>
     );

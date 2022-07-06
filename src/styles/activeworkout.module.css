@@ -89,6 +89,12 @@
     cursor: pointer;
 }
 
+.addExercise {
+    background-color: black;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
 @media (min-width: 768px) {
     .container {
         width: calc(100% - 200px);
