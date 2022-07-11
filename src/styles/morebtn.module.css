@@ -18,3 +18,53 @@
 .dots {
     height: inherit;
 }
+
+.dropdown {
+    position: relative;
+}
+
+.dropdownMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    border-radius: 8px;
+    background-color: rgba(25, 25, 25, 90%);
+    color: white;
+    width: 160px;
+    font-weight: bold;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.25rem 0;
+    cursor: pointer;
+}
+
+img {
+    height: 24px;
+    width: 24px;
+}
+
+.closeBtn {
+    padding: 4px;
+    border-radius: 16px;
+    background-color: whitesmoke;
+}
+
+@media (min-width: 768px) {
+    .dropdownMenu {
+        width: 200px;
+    }
+}
+
+@media (hover:hover) {
+    .menuItem:hover, .closeBtn:hover {
+        filter: brightness(0.7);
+    }
+}

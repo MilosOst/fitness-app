@@ -18,7 +18,6 @@ function WorkoutTemplate({ name, exercises }) {
             <figure className={styles.template} onClick={() => setOpen(true)}>
                 <header className={styles.templateHeader}>
                     <h4 className='bold'>{name}</h4>
-                    <MoreButton />
                 </header>
                 {!exercises && <p>Add new Template</p>}
                 <ul className={styles.exercises}>

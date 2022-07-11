@@ -1,12 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from '../../../styles/workout.module.css';
 import MoreButton from '../../MoreButton.js';
+import ActiveWorkout from './ActiveWorkout.js';
 import WorkoutTemplate from './WorkoutTemplate.js';
+
 import { db } from '../../../firebase-config.js';
 import { collection, getDocs } from 'firebase/firestore';
-import ActiveWorkout from './ActiveWorkout.js';
+
 import { WorkoutContext } from '../../../context/WorkoutContext.js';
 import { exampleTemplates } from '../../../data/exampleTemplates.js';
+
+import addIcon from '../../../images/svgs/newBlue.svg';
 
 
 function Workout() {
@@ -14,17 +18,6 @@ function Workout() {
     const exampleTemplatesRef = collection(db, 'Base Templates');
 
     const { activeWorkout } = useContext(WorkoutContext);
-
-    // useEffect(() => {
-    //     const getExampleTemplates = async () => {
-    //         const data = await getDocs(exampleTemplatesRef);
-    //         setExampleTemplates(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    //         console.log(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    //     };
-
-    //     getExampleTemplates();
-    // }, []);
-
 
     return (
         <div className={styles.container}>
@@ -39,7 +32,7 @@ function Workout() {
                     <div className={styles.templates}>
                         <header className={styles.templatesHeader}>
                             <h4 className='bold'>My Templates ({userTemplates.length})</h4>
-                            <MoreButton />
+                            <MoreButton items={{'Add Template': {img: addIcon, func: ''}}} />
                         </header>
                         <div className={styles.templateGrid}>
                             {userTemplates.length === 0 &&

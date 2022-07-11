@@ -3,16 +3,24 @@ import ExerciseSet from './ExerciseSet.js';
 import { uuidv4 } from '@firebase/util';
 import { useContext } from 'react';
 import { WorkoutContext } from '../../../context/WorkoutContext.js';
+import MoreButton from '../../MoreButton.js';
+import switchIcon from '../../../images/svgs/switch.svg';
+import removeIcon from '../../../images/svgs/remove.svg';
 
 
 function ExerciseSection({ exercise, exerciseIndex }) {
     const { addSet } = useContext(WorkoutContext);
+
+    const log = () => console.log('hello');
 
 
     return (
         <li className={styles.exerciseSection}>
             <header className={styles.exerciseHeader}>
                 <h3 className={styles.exerciseName}>{exercise.name}</h3>
+                <MoreButton items={{
+                    'Remove Exercise': {func: log, img: removeIcon},
+                    'Replace Exercise': {func: log, img: switchIcon} }} />
             </header>
             <table className={styles.setsTable}>
                 <colgroup>
