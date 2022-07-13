@@ -9,7 +9,7 @@ function WorkoutTemplate({ name, exercises }) {
     const { updateActiveWorkout } = useContext(WorkoutContext);
 
     const handleStartWorkout = () => {
-        updateActiveWorkout(name, exercises);
+        updateActiveWorkout(name, [...exercises]);
         setOpen(false);
     };
 

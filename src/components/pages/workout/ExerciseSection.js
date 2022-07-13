@@ -9,7 +9,7 @@ import removeIcon from '../../../images/svgs/remove.svg';
 
 
 function ExerciseSection({ exercise, exerciseIndex }) {
-    const { addSet } = useContext(WorkoutContext);
+    const { addSet, removeExercise } = useContext(WorkoutContext);
 
     const log = () => console.log('hello');
 
@@ -19,7 +19,7 @@ function ExerciseSection({ exercise, exerciseIndex }) {
             <header className={styles.exerciseHeader}>
                 <h3 className={styles.exerciseName}>{exercise.name}</h3>
                 <MoreButton items={{
-                    'Remove Exercise': {func: log, img: removeIcon},
+                    'Remove Exercise': {func: () => removeExercise(exerciseIndex), img: removeIcon},
                     'Replace Exercise': {func: log, img: switchIcon} }} />
             </header>
             <table className={styles.setsTable}>

@@ -44,6 +44,12 @@ function App() {
 		setActiveWorkout(copy);
 	};
 
+	const removeExercise = (index) => {
+		const copy = {...activeWorkout};
+		copy.exercises.splice(index, 1);
+		setActiveWorkout(copy);
+	};
+
 	const addSet = (exerciseIndex) => {
 		const copy = {...activeWorkout};
 		copy.exercises[exerciseIndex].breakdown.push({
@@ -68,11 +74,18 @@ function App() {
 							<Route
 								path='/workout'
 								element={
-								<WorkoutContext.Provider value={{activeWorkout, updateActiveWorkout, confirmSet, removeSet, addSet}}>
-									<Protected>
-										<Workout/>
-									</Protected>
-								</WorkoutContext.Provider>
+									<WorkoutContext.Provider value={{
+										activeWorkout,
+										updateActiveWorkout,
+										confirmSet,
+										removeExercise,
+										removeSet,
+										addSet
+									}}>
+										<Protected>
+											<Workout />
+										</Protected>
+									</WorkoutContext.Provider>
 								}/>
 							<Route path='/workout/active' element={<ActiveWorkout />} />
 							<Route path='*' element={<div>HomePage</div>} />

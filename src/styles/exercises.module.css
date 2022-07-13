@@ -1,0 +1,79 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    min-height: 100vh;
+    padding: 1rem;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 60%);
+    overflow-y: scroll;
+}
+
+.content {
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: whitesmoke;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 2rem;
+}
+
+.closeBtn, .addBtn {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.exerciseList {
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.exercise {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid gainsboro;
+    cursor: pointer;
+}
+
+.imgBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+}
+
+.imgBox > img {
+    height: inherit;
+    width: inherit;
+}
+
+.exerciseInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.bodyPart {
+    font-weight: 400;
+}
