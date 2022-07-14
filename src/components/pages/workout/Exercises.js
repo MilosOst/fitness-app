@@ -2,8 +2,27 @@ import styles from '../../../styles/exercises.module.css';
 import closeIcon from '../../../images/svgs/remove.svg';
 import { Link } from 'react-router-dom';
 import { exerciseList } from '../../../data/exerciseList.js';
+import Exercise from './Exercise.js';
+import { useContext, useState } from 'react';
+import { WorkoutContext } from '../../../context/WorkoutContext.js';
 
 function Exercises({ setSelecting }) {
+    const [exercises, setExercises] = useState([]);
+    const { addExercises } = useContext(WorkoutContext);
+
+    const addExercise = (exercise) => {
+        setExercises([...exercises, exercise]);
+    };
+
+    const removeExercise = (selectedExercise) => {
+        const filtered = exercises.filter((exercise) => exercise.name !== selectedExercise.name);
+        setExercises(filtered);
+    };
+
+    const handleSubmit = () => {
+        addExercises(exercises);
+        setSelecting(false);
+    };
 
 
 
@@ -15,22 +34,16 @@ function Exercises({ setSelecting }) {
                         <img src={closeIcon} alt="Close" />
                     </button>
                     <Link to='addExercise'>New</Link>
-                    <button className={styles.addBtn} onClick={() => setSelecting(false)}>
+                    <button
+                        className={styles.addBtn}
+                        onClick={handleSubmit}>
                         Add
                     </button>
                 </header>
                 <ul className={styles.exerciseList}>
                     {exerciseList.map((exercise) => {
                         return (
-                            <li key={exercise.name} className={styles.exercise}>
-                                <div className={styles.imgBox}>
-                                    <img src={exercise.img} alt={exercise.name} />
-                                </div>
-                                <div className={styles.exerciseInfo}>
-                                    <h3 className={styles.name}>{exercise.name}</h3>
-                                    <h4 className={styles.bodyPart}>{exercise.bodyPart}</h4>
-                                </div>
-                            </li>
+                            <Exercise exercise={exercise} key={exercise.name} addExercise={addExercise} removeExercise={removeExercise}/>
                         );
                     })}
                 </ul>

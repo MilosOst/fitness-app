@@ -1,3 +1,5 @@
+@value confirm-green from './colors.css';
+
 .setNum {
     padding: 4px;
 }
@@ -50,5 +52,5 @@
 }
 
 .confirmed {
-    background-color: #9fff9f;
+    background-color: confirm-green;
 }

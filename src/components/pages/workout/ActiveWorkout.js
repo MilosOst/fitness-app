@@ -33,7 +33,6 @@ function ActiveWorkout({ name, exercises }) {
 
                 {selecting && <Exercises setSelecting={setSelecting}/>}
             </ul>
-            
             }
         </div>
     );

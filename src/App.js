@@ -44,6 +44,17 @@ function App() {
 		setActiveWorkout(copy);
 	};
 
+	const addExercises = (exercises) => {
+		const copy = {...activeWorkout};
+		exercises.forEach((exercise) => {
+			copy.exercises.push({
+				...exercise,
+				breakdown: [],
+			});
+		});
+		setActiveWorkout(copy);
+	};
+
 	const removeExercise = (index) => {
 		const copy = {...activeWorkout};
 		copy.exercises.splice(index, 1);
@@ -64,6 +75,7 @@ function App() {
 		setActiveWorkout(copy);
 	};
 
+
 	return (
 		<div className="App">
 			<AuthContextProvider>
@@ -78,6 +90,7 @@ function App() {
 										activeWorkout,
 										updateActiveWorkout,
 										confirmSet,
+										addExercises,
 										removeExercise,
 										removeSet,
 										addSet
