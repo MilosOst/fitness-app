@@ -6,9 +6,11 @@ import Exercise from './Exercise.js';
 import { useContext, useState } from 'react';
 import { WorkoutContext } from '../../../context/WorkoutContext.js';
 
-function Exercises({ setSelecting }) {
+function Exercises({ setSelecting, mode, replaceIndex }) {
     const [exercises, setExercises] = useState([]);
-    const { addExercises } = useContext(WorkoutContext);
+    const [toggledIndex, setToggledIndex] = useState();
+    const [replacementExercise, setReplacementExercise] = useState();
+    const { addExercises, replaceExercise } = useContext(WorkoutContext);
 
     const addExercise = (exercise) => {
         setExercises([...exercises, exercise]);
@@ -20,7 +22,14 @@ function Exercises({ setSelecting }) {
     };
 
     const handleSubmit = () => {
-        addExercises(exercises);
+        if (mode === 'Add') {
+            addExercises(exercises);
+        }
+        else {
+            if (replacementExercise) {
+                replaceExercise(replacementExercise, replaceIndex);
+            }
+        }
         setSelecting(false);
     };
 
@@ -37,13 +46,23 @@ function Exercises({ setSelecting }) {
                     <button
                         className={styles.addBtn}
                         onClick={handleSubmit}>
-                        Add
+                        {mode === 'Add' ? 'Add': 'Replace'}
                     </button>
                 </header>
                 <ul className={styles.exerciseList}>
-                    {exerciseList.map((exercise) => {
+                    {exerciseList.map((exercise, index) => {
                         return (
-                            <Exercise exercise={exercise} key={exercise.name} addExercise={addExercise} removeExercise={removeExercise}/>
+                            <Exercise
+                                exercise={exercise}
+                                key={exercise.name}
+                                addExercise={addExercise}
+                                removeExercise={removeExercise}
+                                mode={mode}
+                                setReplacementExercise={setReplacementExercise}
+                                index={index}
+                                toggledIndex={toggledIndex}
+                                setToggledIndex={setToggledIndex}
+                                />
                         );
                     })}
                 </ul>

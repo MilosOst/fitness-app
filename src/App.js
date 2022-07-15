@@ -55,6 +55,16 @@ function App() {
 		setActiveWorkout(copy);
 	};
 
+	const replaceExercise = (replacement, exerciseIndex) => {
+		const copy = {...activeWorkout};
+		copy.exercises[exerciseIndex] = {
+			...replacement,
+			sets: 0,
+			breakdown: [],
+		};
+		setActiveWorkout(copy);
+	};
+
 	const removeExercise = (index) => {
 		const copy = {...activeWorkout};
 		copy.exercises.splice(index, 1);
@@ -91,6 +101,7 @@ function App() {
 										updateActiveWorkout,
 										confirmSet,
 										addExercises,
+										replaceExercise,
 										removeExercise,
 										removeSet,
 										addSet

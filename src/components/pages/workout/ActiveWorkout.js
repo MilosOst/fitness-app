@@ -9,8 +9,16 @@ import { uuidv4 } from '@firebase/util';
 function ActiveWorkout({ name, exercises }) {
     const [expanded, setExpanded] = useState(false);
     const [selecting, setSelecting] = useState(false);
+    const [mode, setMode] = useState();
+    const [replaceIndex, setReplaceIndex] = useState();
 
-    const { activeWorkout, updateActiveWorkout } = useContext(WorkoutContext);
+    const { activeWorkout } = useContext(WorkoutContext);
+
+    const handleReplace = (index) => {
+        setSelecting(true);
+        setMode('Replace');
+        setReplaceIndex(index);
+    }; 
     
 
     return (
@@ -26,12 +34,19 @@ function ActiveWorkout({ name, exercises }) {
             <ul className={styles.exerciseList}>
                 {activeWorkout.exercises.map((exercise, index) => {
                     return (
-                        <ExerciseSection exercise={exercise} key={uuidv4()} exerciseIndex={index}/>
+                        <ExerciseSection exercise={exercise} key={uuidv4()} exerciseIndex={index} handleReplace={handleReplace}/>
                     );
                 })}
-                <button className={`${styles.addBtn} ${styles.addExercise}`} onClick={() => setSelecting(true)}>Add Exercise</button>
+            <button
+                className={`${styles.addBtn} ${styles.addExercise}`}
+                onClick={() => {
+                    setSelecting(true);
+                    setMode('Add');
+                }}>
+                Add Exercise
+            </button>
 
-                {selecting && <Exercises setSelecting={setSelecting}/>}
+                {selecting && <Exercises setSelecting={setSelecting} mode={mode} replaceIndex={replaceIndex}/>}
             </ul>
             }
         </div>

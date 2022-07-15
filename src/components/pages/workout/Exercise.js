@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import styles from '../../../styles/exercises.module.css';
 
-function Exercise({ exercise, addExercise, removeExercise }) {
+function Exercise({ exercise, addExercise, removeExercise, mode, setReplacementExercise, index, toggledIndex, setToggledIndex }) {
     const [toggled, setToggled] = useState(false);
 
     const handleClick = () => {
-        toggled ? removeExercise(exercise) : addExercise(exercise);
-        setToggled(!toggled);
+        if (mode === 'Add') {
+            toggled ? removeExercise(exercise) : addExercise(exercise);
+            setToggled(!toggled);
+        }
+        else {
+            setReplacementExercise(exercise);
+            setToggledIndex(index);
+        }
     };
 
     return (
         <li
-            className={`${styles.exercise} ${toggled ? styles.toggled : ''}`}
+            className={`${styles.exercise} ${(toggled || index === toggledIndex) ? styles.toggled : ''}`}
             onClick={handleClick}>
             <div className={styles.imgBox}>
                 <img src={exercise.img} alt={exercise.name} />
